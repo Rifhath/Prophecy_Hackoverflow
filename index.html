@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Mental Health Checker</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+
+	<!-- Tidio Bot -->
+	<script src="//code.tidio.co/ywddqpr3e68l9fkzpsz7jw2leloybkie.js" async></script>
+	<style>
+		body{
+			background-color: rgb(216, 206, 255);
+			font-size: 1rem;
+			font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif; 
+		}
+		.center-form{
+			margin: 2rem 20rem;
+		}
+		button{
+			margin-left: 20rem;
+		}
+		h3{
+			margin-left: 35rem;
+		}
+
+		
+	</style>
+
+</head>
+
+<body>
+	<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">
+				<img src="https://www.kindpng.com/picc/m/133-1339836_prophecy-esports-logo-hd-png-download.png" alt="" width="30" height="24"
+					class="d-inline-block align-text-top">
+				Team Prophecy
+			</a>
+		</div>
+	</nav>
+	<div class="alert alert-primary center-text" id="alertrole "role="alert">
+		<p class="text-center" style="font-size: 1.7rem;">{{ prediction_text }}</p>
+	  </div>
+	<div class="wrapper" style="padding-top: 1rem;">
+		<div class="inner">
+			<img src="images/image-1.png" alt="" class="image-1">
+							<h3 style="margin-left: 40rem;">Mental Health Check</h3>
+
+			<form action="{{ url_for('predict')}}" method="post" class="center-form">
+
+				<div class="form-holder">
+					<div class="flex-container" style="display: flex; margin-bottom: 1.5rem;">
+						<div style="padding-right: 1rem; font-weight: 500;" >Age :</div>
+						<div class="form-check" style="padding-right: 0.5rem">
+							<input class="form-check-input" type="radio" name="age"  value=1 required>
+							<label class="form-check-label" >
+								Above 25
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="age"  value=0>
+							<label class="form-check-label" >
+								Below 25
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-holder">
+					<div class="flex-container" style="display: flex; margin-bottom: 1.5rem">
+						<div style="padding-right: 1rem; font-weight: 500;" >Gender :</div>
+						<div class="form-check" style="padding-right: 0.5rem">
+							<input class="form-check-input" type="radio" name="gender"  value=1 required>
+							<label class="form-check-label" for="gender">
+								Male
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="gender"  value=0>
+							<label class="form-check-label" for="gender">
+								Female
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-holder">
+					<div class="flex-container" style="display: flex; margin-bottom: 1.5rem">
+						<div style="padding-right: 1rem; font-weight: 500;" >Have you experienced any kind of change, loss, or trauma
+							recently?</div>
+						<div class="form-check" style="padding-right: 0.5rem">
+							<input class="form-check-input" type="radio" name="trauma"  value=1 required>
+							<label class="form-check-label" for="trauma">
+								Yes
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="trauma"  value=0>
+							<label class="form-check-label" for="trauma">
+								No
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-holder">
+					<div class="flex-container" style="display: flex; margin-bottom: 1.5rem">
+						<div style="padding-right: 1rem; font-weight: 500;" >Have you experienced a loss of interest in Normal activities
+							such as hobbies or sports?</div>
+						<div class="form-check" style="padding-right: 0.5rem">
+							<input class="form-check-input" type="radio" name="sports"  value=1 required>
+							<label class="form-check-label" for="sports">
+								Yes
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="sports"  value=0>
+							<label class="form-check-label" for="sports">
+								No
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-holder">
+					<div class="flex-container" style="display: flex; margin-bottom: 1.5rem">
+						<div style="padding-right: 1rem; font-weight: 500;" >Are you experiencing tiredness, sleep problems, or a lack of
+							energy?</div>
+						<div class="form-check" style="padding-right: 0.5rem">
+							<input class="form-check-input" type="radio" name="energy"  value=1 required>
+							<label class="form-check-label" for="energy">
+								Yes
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="energy"  value=0>
+							<label class="form-check-label" for="energy">
+								No
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-holder">
+					<div class="flex-container" style="display: flex; margin-bottom: 1.5rem">
+						<div style="padding-right: 1rem; font-weight: 500;" >Have your daily patterns shifted in a drastic way?</div>
+						<div class="form-check" style="padding-right: 0.5rem">
+							<input class="form-check-input" type="radio" name="pattern"  value=1 required>
+							<label class="form-check-label" for="pattern">
+								Yes
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="pattern"  value=0>
+							<label class="form-check-label" for="pattern">
+								No
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-holder">
+					<div class="flex-container" style="display: flex; margin-bottom: 1.5rem">
+						<div style="padding-right: 1rem; font-weight: 500;" >Do you feel that you have a person to talk through emotions and
+							feelings with?</div>
+						<div class="form-check" style="padding-right: 0.5rem">
+							<input class="form-check-input" type="radio" name="emotions"  value=1
+								required>
+							<label class="form-check-label" for="emotions">
+								Yes
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="emotions"  value=0>
+							<label class="form-check-label" for="emotions">
+								No
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-holder">
+					<div class="flex-container" style="display: flex; margin-bottom: 1.5rem">
+						<div style="padding-right: 1rem; font-weight: 500;" >Do you feel inappropriate guilt?</div>
+						<div class="form-check" style="padding-right: 0.5rem">
+							<input class="form-check-input" type="radio" name="guilt" value=1 required>
+							<label class="form-check-label" for="guilt">
+								Yes
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="guilt"  value=0>
+							<label class="form-check-label" for="guilt">
+								No
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-holder">
+					<div class="flex-container" style="display: flex; margin-bottom: 1.5rem">
+						<div style="padding-right: 1rem; font-weight: 500;" >Are you lagging in your performance?</div>
+						<div class="form-check" style="padding-right: 0.5rem">
+							<input class="form-check-input" type="radio" name="performance"  value=1
+								required>
+							<label class="form-check-label" for="performance">
+								Yes
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="performance"  value=0>
+							<label class="form-check-label" for="performance">
+								No
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-holder">
+					<div class="flex-container" style="display: flex; margin-bottom: 1.5rem">
+						<div style="padding-right: 1rem; font-weight: 500;" >Are you an introvert?</div>
+						<div class="form-check" style="padding-right: 0.5rem">
+							<input class="form-check-input" type="radio" name="introvert"  value=1
+								required>
+							<label class="form-check-label" for="introvert">
+								Yes
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="introvert"  value=0>
+							<label class="form-check-label" for="introvert">
+								No
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-holder">
+					<div class="flex-container" style="display: flex; margin-bottom: 1.5rem">
+						<div style="padding-right: 1rem; font-weight: 500;" >Can you easily interact with the strangers?</div>
+						<div class="form-check" style="padding-right: 0.5rem">
+							<input class="form-check-input" type="radio" name="strangers"  value=1
+								required>
+							<label class="form-check-label" for="strangers">
+								Yes
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="strangers"  value=0>
+							<label class="form-check-label" for="strangers">
+								No
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-holder">
+					<div class="flex-container" style="display: flex; margin-bottom: 1.5rem">
+						<div style="padding-right: 1rem; font-weight: 500;" >Been able to control anger in your life?</div>
+						<div class="form-check" style="padding-right: 0.5rem">
+							<input class="form-check-input" type="radio" name="anger"  value=1 required>
+							<label class="form-check-label" for="anger">
+								Yes
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="anger" value=0>
+							<label class="form-check-label" for="anger">
+								No
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-holder">
+					<div class="flex-container" style="display: flex; margin-bottom: 1.5rem">
+						<div style="padding-right: 1rem; font-weight: 500;" >Do you think things go in your way?</div>
+						<div class="form-check" style="padding-right: 0.5rem">
+							<input class="form-check-input" type="radio" name="things"  value=1 required>
+							<label class="form-check-label" for="things">
+								Yes
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="things"  value=0>
+							<label class="form-check-label" for="things">
+								No
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-holder">
+					<div class="flex-container" style="display: flex; margin-bottom: 1.5rem">
+						<div style="padding-right: 1rem; font-weight: 500;" >Do you think your friends are on your side?</div>
+						<div class="form-check" style="padding-right: 0.5rem">
+							<input class="form-check-input" type="radio" name="friends"  value=1 required>
+							<label class="form-check-label" for="friends">
+								Yes
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="friends"  value=0>
+							<label class="form-check-label" for="friends">
+								No
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-holder">
+					<div class="flex-container" style="display: flex; margin-bottom: 1.5rem">
+						<div style="padding-right: 1rem; font-weight: 500;" >Do you think you have the ability to manage your anger?</div>
+						<div class="form-check" style="padding-right: 0.5rem">
+							<input class="form-check-input" type="radio" name="manageAnger"  value=1
+								required>
+							<label class="form-check-label" for="manageAnger">
+								Yes
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="manageAnger"  value=0>
+							<label class="form-check-label" for="manageAnger">
+								No
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-holder">
+					<div class="flex-container" style="display: flex; margin-bottom: 1.5rem">
+						<div style="padding-right: 1rem; font-weight: 500;" >Were you able to control things in your life?</div>
+						<div class="form-check" style="padding-right: 0.5rem">
+							<input class="form-check-input" type="radio" name="controlThings"
+								value=1 required>
+							<label class="form-check-label" for="controlThings">
+								Yes
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="controlThings"
+								value=0>
+							<label class="form-check-label" for="controlThings">
+								No
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-holder">
+					<div class="flex-container" style="display: flex; margin-bottom: 1.5rem">
+						<div style="padding-right: 1rem; font-weight: 500;" >Are you getting enough support from your well wishers?</div>
+						<div class="form-check" style="padding-right: 0.5rem">
+							<input class="form-check-input" type="radio" name="support"  value=1 required>
+							<label class="form-check-label" for="support">
+								Yes
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="support"  value=0>
+							<label class="form-check-label" for="support">
+								No
+							</label>
+						</div>
+					</div>
+				</div>
+
+				<button type="submit" name="predict" class="btn" style="background-color: rgba(64, 44, 137, 0.988); color: white;">
+					<span style="font-size: 1.5rem;">Predict</span>
+				</button>
+				</form>
+			<img src="images/image-2.png" alt="" class="image-2">
+
+			<br>
+   <br>
+   
+   <!-- {{ prediction_text }} -->
+		</div>
+
+	</div>
+
+
+
+
+			
+
+<script>
+	Swal.fire({
+	title: 'Sweet!',
+	text: 'Modal with a custom image.',
+	imageUrl: 'https://unsplash.it/400/200',
+	imageWidth: 400,
+	imageHeight: 200,
+	imageAlt: 'Custom image',
+  })
+
+  
+  $("button").onclick(function(){
+  $("#alertroles").fadeIn();
+  
+});
+  </script>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/main.js"></script>
+</body>
+
+</html>
